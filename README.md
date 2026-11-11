@@ -4,6 +4,8 @@ A native macOS chat app built with SwiftUI for talking to models served by [Olla
 
 The default chat endpoint is `http://localhost:11434/api/chat`.
 
+<img src="Assets/AppIcon.png" alt="Ollama Chat app icon: a llama in a chat bubble on a teal tile" width="160">
+
 ## Features
 
 - Native SwiftUI interface with a conversation sidebar and model picker.
@@ -55,6 +57,8 @@ open "dist/Ollama Chat.app"
 ```
 
 The script compiles a release build, creates `dist/Ollama Chat.app`, and signs it locally with an ad-hoc signature. You can also launch it from Finder or copy it into your Applications folder. This build is for local use; the script does not create a notarized distribution release.
+
+The build also converts `Assets/AppIcon.png` into a macOS icon with standard and Retina sizes and includes it in the app bundle. To change the icon, replace that PNG with square artwork at least 1024 × 1024 pixels and rebuild. Icon conversion uses the macOS tools `sips` and `iconutil`; no additional dependencies are needed. The bundled icon applies to the packaged `.app` build.
 
 ### Run from Xcode
 
@@ -132,5 +136,7 @@ The tests cover stream chunk decoding, endpoint validation, and chat message ser
 | `Sources/OllamaChat/OllamaClient.swift` | Model discovery and streaming chat requests |
 | `Tests/OllamaChatTests/OllamaClientTests.swift` | Client unit tests |
 | `scripts/build-app.sh` | Release compilation and app bundle packaging |
+| `scripts/build-icon.sh` | Generate the macOS `.icns` icon from the source PNG |
+| `Assets/AppIcon.png` | App icon artwork |
 
 API references: [Ollama chat API](https://docs.ollama.com/api/chat) and [model listing API](https://docs.ollama.com/api/tags).
